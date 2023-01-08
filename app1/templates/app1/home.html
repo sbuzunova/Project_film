@@ -1,0 +1,30 @@
+{% extends 'app1/base.html' %}
+{% block content %}
+    <main>
+    {% for film in films %}
+    <div class="film_div">
+        <img src="{{film.image}}" alt="">
+        <p>{{film.name}}</p>
+        <p>{{film.ganre}}</p>
+        <p>Рік: {{film.year}}</p>
+        <a href="{{film.link}}" target="_blank">Переглянути</a>
+    </div>
+    {% endfor %}
+    </main>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Додати новий фільм</h2>
+        <input type="text" name="name" placeholder="Назва фільму">
+        <input type="text" name="ganre" placeholder="Жанр">
+        <select name="type">
+            <option value="film">Фільм</option>
+            <option value="sereal">Серіал</option>
+            <option value="cartoon_sereal">Мультсеріал</option>
+            <option value="cartoon_film">Мультфільм</option>
+        </select>
+        <input type="number" name="year" placeholder="Рік">
+        <input type="url" name="link" placeholder="Посилання на перегляд">
+        <input type="file" name="image" class="custom-file-input">
+        <button>Створити</button>
+    </form>
+{% endblock content %}
